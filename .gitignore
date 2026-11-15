@@ -6,3 +6,6 @@ coverage/
 *.log
 .env*
 !.env.example
+
+# Banco de imágenes crudo descargado del sitio actual (137 MB, se regenera con scripts)
+.asset-bank/

@@ -128,7 +128,7 @@ h1 .dot{color:var(--yellow)}
 .js .nav::after{transform:scaleX(0);transform-origin:left;transition:transform 1000ms var(--ease-clip) 100ms}
 .js h1 .ln>span{transform:translateY(105%);transition:transform 1100ms var(--ease-out)}
 .js .eyebrow,.js .lede,.js .ctas{opacity:0;transform:translateY(24px) scale(.99);transition:opacity 1200ms var(--ease-wo),transform 1200ms var(--ease-wo)}
-.js .panel-wrap{clip-path:inset(100% 0 0 0);transition:clip-path 1200ms var(--ease-clip) 350ms}
+.js .panel{clip-path:inset(100% 0 0 0);transition:clip-path 1200ms var(--ease-clip) 350ms}
 .js .marks,.js .reg,.js .caption{opacity:0;transition:opacity 800ms ease 1100ms}
 .js .slides{opacity:0;transform:translateY(24px);transition:opacity 1000ms cubic-bezier(.4,0,.2,1) 900ms,transform 1100ms var(--ease-out) 900ms}
 .js .ledger::before{transform:scaleX(0);transition:transform 1000ms var(--ease-clip) 1000ms}
@@ -143,7 +143,7 @@ h1 .dot{color:var(--yellow)}
 .js.in .eyebrow{opacity:1;transform:none;transition-delay:150ms}
 .js.in .lede{opacity:1;transform:none;transition-delay:600ms}
 .js.in .ctas{opacity:1;transform:none;transition-delay:720ms}
-.js.in .panel-wrap{clip-path:inset(0 0 0 0)}
+.js.in .panel{clip-path:inset(0 0 0 0)}
 .js.in .marks,.js.in .reg,.js.in .caption{opacity:1}
 .js.in .slides{opacity:1;transform:none}
 .js.in .ledger::before{transform:none}
@@ -165,8 +165,8 @@ h1 .dot{color:var(--yellow)}
 @media(max-width:767px){
   .nav{height:72px}
   .logo img{height:38px}
-  h1{font-size:clamp(2.6rem,12.4vw,4rem)}
-  h1 .ln>span{white-space:nowrap}
+  h1{font-size:clamp(2.6rem,11.6vw,4rem);text-wrap:balance}
+  h1 .ln>span{white-space:normal}
   .eyebrow{font-size:11px;letter-spacing:.16em}
   .lede{font-size:16px}
   .ctas{flex-direction:column;align-items:flex-start}
@@ -174,16 +174,17 @@ h1 .dot{color:var(--yellow)}
   .stage{margin-top:44px}
   .panel-wrap{height:340px;min-height:340px}
   .ledger{grid-template-columns:1fr 1fr;row-gap:28px;padding-bottom:28px}
+  .reg{left:auto;right:-22px;top:auto;bottom:40px;transform:none}
   .seal{position:static;grid-column:1 / -1;justify-self:start;margin-top:-4px}
   .stat .l{letter-spacing:.12em}
-  .cap-text{white-space:normal}
+  .caption{flex-wrap:wrap;row-gap:14px}.cap-text{letter-spacing:.12em}.dashes button{width:24px}
   .clients li{font-size:1.4rem}
 }
 @media(prefers-reduced-motion:reduce){
   *,*::before,*::after{transition:none!important;animation:none!important}
   .js .nav>*,.js .eyebrow,.js .lede,.js .ctas,.js .marks,.js .reg,.js .caption,.js .slides,.js .stat,.js .seal{opacity:1;transform:none}
   .js h1 .ln>span,.js .nav::after,.js .ledger::before{transform:none}
-  .js .panel-wrap{clip-path:none}
+  .js .panel{clip-path:none}
 }
 </style>
 </head>

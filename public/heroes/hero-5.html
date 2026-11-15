@@ -1,0 +1,281 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Opción 5 · Cadena integrada</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@500;700;800;900&family=Red+Hat+Text:wght@400;500&display=swap">
+<style>
+:root{
+  --navy:#0A1538; --navy-deep:#060D26; --navy-mid:#111C44; --navy-halo:#1A2A63;
+  --yellow:#FFD602; --white:#FFFFFF; --mist:#F4F5F8; --steel:#C9CEDD;
+  --ease-out:cubic-bezier(.22,1,.36,1); --ease-io:cubic-bezier(.76,0,.24,1);
+  --gutter:5vw;
+  --f-display:"Red Hat Display","Helvetica Neue",Arial,sans-serif;
+  --f-text:"Red Hat Text","Helvetica Neue",Arial,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--white);color:var(--navy);font-family:var(--f-text);overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+:focus-visible{outline:2px solid var(--yellow);outline-offset:3px}
+
+/* ---------- HERO ---------- */
+.hero{position:relative;background:var(--navy);color:var(--white);min-height:max(100svh,640px);
+  display:grid;grid-template-rows:auto 1fr auto;overflow:hidden}
+.wrap{padding-inline:var(--gutter)}
+
+/* nav */
+.nav{display:flex;align-items:center;justify-content:space-between;gap:24px;padding-block:22px}
+.nav img{height:44px;width:auto;display:block}
+.nav-links{display:flex;gap:clamp(18px,2.2vw,34px);list-style:none}
+.nav-links a{font:500 14px/1 var(--f-display);color:rgba(255,255,255,.85);transition:color .2s}
+.nav-links a:hover{color:var(--white)}
+.nav-right{display:flex;align-items:center;gap:22px}
+.lang{font:500 13px/1 var(--f-display);letter-spacing:.06em;color:rgba(255,255,255,.65)}
+.lang b{color:var(--white);font-weight:700}
+.btn{display:inline-flex;align-items:center;gap:10px;font:700 15px/1 var(--f-display);padding:15px 24px;border-radius:2px;
+  transition:background .2s,border-color .2s,transform .2s var(--ease-out),color .2s}
+.btn-y{background:var(--yellow);color:var(--navy)}
+.btn-y:hover{background:#ffe23d}
+.btn-y svg{transition:transform .25s var(--ease-out)}
+.btn-y:hover svg{transform:translateX(4px)}
+.btn-o{border:1px solid rgba(255,255,255,.4);color:var(--white)}
+.btn-o:hover{border-color:var(--white);background:rgba(255,255,255,.06)}
+.nav .btn{padding:12px 20px;font-size:14px}
+.menu-btn{display:none;width:44px;height:44px;border:1px solid rgba(255,255,255,.3);border-radius:2px;align-items:center;justify-content:center}
+.menu-btn span,.menu-btn span::before,.menu-btn span::after{display:block;width:18px;height:2px;background:#fff;position:relative;content:""}
+.menu-btn span::before{position:absolute;top:-6px}.menu-btn span::after{position:absolute;top:6px}
+
+/* main */
+.main{display:grid;grid-template-columns:repeat(12,1fr);column-gap:24px;padding-inline:var(--gutter);align-items:stretch;min-height:0}
+.copy{grid-column:1 / span 6;display:flex;flex-direction:column;justify-content:center;padding-block:12px 28px;position:relative;z-index:5}
+.eyebrow{display:flex;align-items:center;gap:12px;font:700 12px/1.3 var(--f-display);letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.65);margin-bottom:26px}
+.eyebrow::before{content:"";width:8px;height:8px;background:var(--yellow);border-radius:50%;flex:none}
+h1{font:800 clamp(2.4rem,5.2vw,4.75rem)/1.02 var(--f-display);letter-spacing:-.03em;text-wrap:balance;margin-bottom:26px}
+h1 .ln{display:block;overflow:hidden;padding-bottom:.08em;margin-bottom:-.08em}
+h1 .ln>span{display:block}
+h1 .y{color:var(--yellow)}
+.lede{font:400 18px/1.6 var(--f-text);color:rgba(255,255,255,.8);max-width:48ch;margin-bottom:32px}
+.ctas{display:flex;flex-wrap:wrap;gap:14px;margin-bottom:26px}
+.trust{font:400 13px/1.5 var(--f-text);color:rgba(255,255,255,.6)}
+
+/* stage */
+.stage{grid-column:7 / span 6;position:relative;z-index:2;min-height:0;display:flex;align-items:flex-end;justify-content:center;padding-bottom:34px}
+.halo{position:absolute;inset:6% -4% 0;background:radial-gradient(ellipse 55% 60% at 50% 55%,var(--navy-halo) 0%,rgba(26,42,99,.45) 45%,rgba(10,21,56,0) 75%);pointer-events:none}
+.floor{position:absolute;left:0;right:0;bottom:34px;height:1px;background:rgba(255,255,255,.18);transform-origin:left}
+.ticks{position:absolute;left:0;right:0;bottom:34px;height:9px;pointer-events:none;
+  background:repeating-linear-gradient(90deg,rgba(255,255,255,.22) 0 1px,transparent 1px 24px)}
+.ticks::after{content:"";position:absolute;left:0;right:0;top:0;height:9px;
+  background:repeating-linear-gradient(90deg,rgba(255,255,255,.4) 0 1px,transparent 1px 120px)}
+.ticks{-webkit-mask:linear-gradient(180deg,transparent 0,#000 0);height:5px}
+.ticks::after{height:9px}
+.ex{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;--h:min(62svh,calc(100vw * .4));}
+.ex img{display:block;height:var(--h);width:auto;position:relative;z-index:1;transition:transform .35s var(--ease-out);will-change:transform}
+.ex::after{content:"";position:absolute;left:8%;right:8%;bottom:-6px;height:14px;background:radial-gradient(ellipse at center,rgba(0,0,0,.55) 0%,rgba(0,0,0,0) 70%);z-index:0}
+.ex:hover img{transform:translateY(-6px)}
+.ex-c{z-index:3}
+.ex-l{z-index:2;--h:calc(min(62svh,40vw)*.85);margin-right:-4.5%}
+.ex-r{z-index:2;--h:calc(min(62svh,40vw)*.85);margin-left:-4.5%}
+.ex-c{margin-inline:0}
+
+/* chain */
+.chain{background:var(--navy-deep);border-top:1px solid rgba(255,255,255,.12);padding-block:22px 24px;position:relative;z-index:4}
+.steps{position:relative;display:grid;grid-template-columns:repeat(4,1fr);column-gap:24px;list-style:none}
+.rail{position:absolute;left:5px;right:calc(25% + 24px*.75 - 5px);top:29px;height:2px;background:rgba(255,255,255,.15);pointer-events:none}
+.rail i{position:absolute;left:0;top:0;bottom:0;width:100%;background:var(--yellow);transform-origin:left;transform:scaleX(0)}
+.step{display:block;text-align:left;width:100%;padding:0 0 0 0;position:relative;opacity:.55;transition:opacity .3s}
+.step.on{opacity:1}
+.step .num{display:block;font:800 1.15rem/1 var(--f-display);font-variant-numeric:tabular-nums;color:var(--white);letter-spacing:.02em;margin-bottom:10px;transition:color .3s}
+.step.on .num{color:var(--yellow)}
+.step .node{display:block;width:10px;height:10px;border-radius:50%;background:var(--navy-deep);border:2px solid rgba(255,255,255,.45);position:relative;margin-bottom:14px;transition:background .3s,border-color .3s}
+.step.on .node{background:var(--yellow);border-color:var(--yellow)}
+.step .ttl{display:block;font:700 1.05rem/1.2 var(--f-display);color:var(--white);margin-bottom:6px}
+.step .dsc{display:block;font:400 13px/1.45 var(--f-text);color:rgba(255,255,255,.62);max-width:30ch}
+.step:hover,.step:focus-visible{opacity:1}
+
+/* brands */
+.brands{background:var(--white);padding:46px var(--gutter) 50px;text-align:center}
+.brands p{font:700 11px/1 var(--f-display);letter-spacing:.2em;text-transform:uppercase;color:rgba(10,21,56,.6);margin-bottom:26px}
+.brands ul{list-style:none;display:flex;flex-wrap:wrap;justify-content:center;gap:14px 56px}
+.brands li{font:800 clamp(1.05rem,1.7vw,1.4rem)/1 var(--f-display);color:rgba(10,21,56,.7);letter-spacing:-.01em}
+
+/* ---------- intro ---------- */
+.js .nav,.js .eyebrow,.js .lede,.js .ctas,.js .trust{opacity:0}
+.js .nav{transition:opacity .6s var(--ease-out)}
+.js .eyebrow,.js .lede,.js .ctas,.js .trust{transform:translateY(18px);transition:opacity .8s var(--ease-out),transform .8s var(--ease-out)}
+.js h1 .ln>span{transform:translateY(100%);transition:transform 1s var(--ease-out)}
+.js .floor{transform:scaleX(0);transition:transform .7s var(--ease-io)}
+.js .ticks{opacity:0;transition:opacity .7s .3s}
+.js .halo{opacity:0;transition:opacity 1.2s}
+.js .ex{opacity:0;transform:translateY(40px);transition:opacity .9s var(--ease-out),transform .9s var(--ease-out)}
+.js .chain{opacity:0;transform:translateY(16px);transition:opacity .8s var(--ease-out),transform .8s var(--ease-out)}
+.js.go .nav,.js.go .eyebrow,.js.go .lede,.js.go .ctas,.js.go .trust,.js.go .ticks,.js.go .halo,.js.go .ex,.js.go .chain{opacity:1}
+.js.go .eyebrow,.js.go .lede,.js.go .ctas,.js.go .trust,.js.go .ex,.js.go .chain{transform:none}
+.js.go h1 .ln>span{transform:none}
+.js.go .floor{transform:scaleX(1)}
+.js.go .eyebrow{transition-delay:.15s}
+.js.go h1 .ln:nth-child(1)>span{transition-delay:.25s}
+.js.go h1 .ln:nth-child(2)>span{transition-delay:.34s}
+.js.go h1 .ln:nth-child(3)>span{transition-delay:.43s}
+.js.go .lede{transition-delay:.7s}
+.js.go .ctas{transition-delay:.8s}
+.js.go .trust{transition-delay:.9s}
+.js.go .floor{transition-delay:.85s}
+.js.go .ex-c{transition-delay:1s}
+.js.go .ex-l{transition-delay:1.12s}
+.js.go .ex-r{transition-delay:1.24s}
+.js.go .chain{transition-delay:1.35s}
+.js.go .ex:hover{transition-delay:0s}
+
+@media (max-width:1100px){
+  .nav-links{display:none}
+  .menu-btn{display:inline-flex}
+}
+@media (max-width:860px){
+  :root{--gutter:20px}
+  .hero{min-height:0}
+  .nav{padding-block:16px}
+  .nav img{height:36px}
+  .nav-right{gap:12px}
+  .nav .btn{display:none}
+  .main{display:flex;flex-direction:column;padding-inline:var(--gutter)}
+  .copy{padding-block:18px 8px}
+  .eyebrow{font-size:11px;letter-spacing:.12em;margin-bottom:18px}
+  h1{margin-bottom:18px}
+  .lede{font-size:16px;margin-bottom:24px}
+  .ctas{margin-bottom:20px}
+  .ctas .btn{flex:1 1 auto;justify-content:center}
+  .stage{height:300px;padding-bottom:30px;margin-top:8px}
+  .floor,.ticks{bottom:30px}
+  .ex{--h:240px}
+  .ex-l,.ex-r{--h:204px}
+  .ex-l{margin-right:-8%}.ex-r{margin-left:-8%}
+  .chain{padding-block:18px 20px}
+  .steps{grid-template-columns:1fr;row-gap:0}
+  .rail{display:none}
+  .step{display:grid;grid-template-columns:34px 1fr;column-gap:12px;padding:12px 0;border-top:1px solid rgba(255,255,255,.08)}
+  .step:first-child{border-top:0}
+  .step .node{display:none}
+  .step .num{grid-row:1 / span 2;font-size:1rem;margin:2px 0 0}
+  .step .ttl{margin-bottom:2px}
+  .step .dsc{max-width:none}
+  .msrail{display:block}
+}
+.msrail{display:none}
+@media (max-width:860px){
+  .steps{padding-left:0}
+  .step.on{box-shadow:inset 2px 0 0 var(--yellow);padding-left:10px;margin-left:-10px}
+}
+@media (max-width:420px){
+  .stage{height:290px}
+  .ex{--h:228px}.ex-l,.ex-r{--h:194px}
+}
+@media (prefers-reduced-motion:reduce){
+  *{transition:none!important;animation:none!important}
+}
+</style>
+</head>
+<body>
+<header class="hero" id="hero">
+  <nav class="nav wrap" aria-label="Principal">
+    <a href="#" aria-label="Imágenes Gráficas, inicio"><img src="img/logo-ig-blanco.png" alt="Imágenes Gráficas" width="168" height="44"></a>
+    <ul class="nav-links">
+      <li><a href="#">Soluciones</a></li><li><a href="#">Casos de éxito</a></li><li><a href="#">Capacidades</a></li>
+      <li><a href="#">Sostenibilidad</a></li><li><a href="#">Nosotros</a></li><li><a href="#">Contacto</a></li>
+    </ul>
+    <div class="nav-right">
+      <span class="lang"><b>ES</b> / EN</span>
+      <a class="btn btn-y" href="#">Cotizar</a>
+      <button class="menu-btn" aria-label="Abrir menú"><span></span></button>
+    </div>
+  </nav>
+
+  <div class="main">
+    <div class="copy">
+      <p class="eyebrow">Diseño · Producción · Implementación</p>
+      <h1><span class="ln"><span>De la idea a</span></span><span class="ln"><span>la góndola, <span class="y">sin</span></span></span><span class="ln"><span class="y">cambiar de proveedor.</span></span></h1>
+      <p class="lede">Exhibidores, stands, activaciones BTL y promocionales concebidos, fabricados e instalados por un solo equipo, en una planta propia de 6.500&nbsp;m² que opera 24/7.</p>
+      <div class="ctas">
+        <a class="btn btn-y" href="#">Cotizar un proyecto <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5"/></svg></a>
+        <a class="btn btn-o" href="#">Ver casos de éxito</a>
+      </div>
+      <p class="trust">Desde 1989 · Cali · Bogotá · Miami · Empresa BIC</p>
+    </div>
+
+    <div class="stage">
+      <div class="halo"></div>
+      <div class="floor"></div><div class="ticks"></div>
+      <div class="ex ex-l"><img src="img/cutout-exhibidor-piso.webp" alt="Exhibidor de piso azul con cuatro bandejas de producto"></div>
+      <div class="ex ex-c"><img src="img/cutout-exhibidor-isla.webp" alt="Exhibidor tipo isla escalonado, muy colorido"></div>
+      <div class="ex ex-r"><img src="img/cutout-exhibidor-torre.webp" alt="Exhibidor torre curvo de color morado"></div>
+    </div>
+  </div>
+
+  <section class="chain wrap" aria-label="La cadena completa">
+    <div class="steps" id="steps">
+      <div class="rail" aria-hidden="true"><i id="fill"></i></div>
+      <button class="step on" type="button"><span class="num">01</span><span class="node"></span><span class="ttl">Diseño</span><span class="dsc">Agencia creativa y diseño estructural propios.</span></button>
+      <button class="step" type="button"><span class="num">02</span><span class="node"></span><span class="ttl">Producción</span><span class="dsc">Planta propia de 6.500 m², activa 24/7.</span></button>
+      <button class="step" type="button"><span class="num">03</span><span class="node"></span><span class="ttl">Logística</span><span class="dsc">Despacho a Colombia, EE. UU., Centroamérica y Caribe.</span></button>
+      <button class="step" type="button"><span class="num">04</span><span class="node"></span><span class="ttl">Implementación</span><span class="dsc">Instalación en punto de venta y activación BTL.</span></button>
+    </div>
+  </section>
+</header>
+
+<section class="brands">
+  <p>Marcas que confían en nosotros</p>
+  <ul><li>Postobón</li><li>Coomeva</li><li>Colgate</li><li>Dettol</li><li>Fundación Valle del Lili</li></ul>
+</section>
+
+<script>
+(function(){
+  var root=document.documentElement;
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  root.classList.add('js');
+  var go=function(){root.classList.add('go')};
+  if(reduce){go()}else{requestAnimationFrame(function(){requestAnimationFrame(function(){setTimeout(go,60)})})}
+
+  var steps=[].slice.call(document.querySelectorAll('.step'));
+  var fill=document.getElementById('fill');
+  var N=steps.length, DUR=3500;
+  var mobile=function(){return window.matchMedia('(max-width:860px)').matches};
+  var cur=0, t0=0, paused=false, started=false, visible=true, elapsed=0;
+  function setActive(i){cur=i;steps.forEach(function(s,k){s.classList.toggle('on',k===i)})}
+  function paint(p){ // p: 0..1 inside current step
+    var total=(cur+p)/(N-1);
+    fill.style.transform='scaleX('+Math.min(1,total)+')';
+  }
+  var last=0;
+  function tick(now){
+    requestAnimationFrame(tick);
+    if(!started||paused||!visible||reduce){last=now;return}
+    elapsed+=now-last;last=now;
+    if(elapsed>=DUR){elapsed=0;setActive((cur+1)%N)}
+    paint(cur===N-1?1:elapsed/DUR);
+    if(cur===N-1){paint(1)}
+  }
+  setActive(0);paint(0);
+  if(reduce){setActive(0);fill.style.transform='scaleX(0)'}
+  setTimeout(function(){started=true;last=performance.now()},reduce?0:1700);
+  requestAnimationFrame(tick);
+
+  steps.forEach(function(s,i){
+    var act=function(){setActive(i);elapsed=0;paused=true;paint(0)};
+    s.addEventListener('mouseenter',act);
+    s.addEventListener('focus',act);
+    s.addEventListener('click',act);
+    var rel=function(){paused=false;last=performance.now()};
+    s.addEventListener('mouseleave',rel);
+    s.addEventListener('blur',rel);
+  });
+  if('IntersectionObserver' in window){
+    new IntersectionObserver(function(e){visible=e[0].isIntersecting},{threshold:.1}).observe(document.getElementById('hero'));
+  }
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,492 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Opción 1 · Cinemático rotatorio</title>
+<meta name="description" content="Imágenes Gráficas BIC: exhibidores, stands, activaciones BTL y soluciones en cartón diseñados, producidos e instalados bajo un mismo techo.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Open+Sans:wght@400;600&display=swap">
+<script>
+  (function () {
+    var rm = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!rm) document.documentElement.classList.add('js');
+  })();
+</script>
+<style>
+:root {
+  --navy: #0A1538;
+  --navy-2: #111C44;
+  --navy-deep: #060D26;
+  --yellow: #FFD602;
+  --white: #FFFFFF;
+  --mist: #F4F5F8;
+  --steel: #C9CEDD;
+
+  --veil: rgba(10, 21, 56, .45);
+  --line: rgba(255, 255, 255, .12);
+  --line-2: rgba(255, 255, 255, .4);
+  --text-82: rgba(255, 255, 255, .82);
+  --text-55: rgba(255, 255, 255, .55);
+  --navy-60: rgba(10, 21, 56, .6);
+  --navy-70: rgba(10, 21, 56, .7);
+
+  --font-display: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+  --font-body: "Open Sans", "Helvetica Neue", Arial, sans-serif;
+
+  --gutter: clamp(20px, 6.7vw, 96px);
+  --col-gap: clamp(12px, 1.7vw, 24px);
+  --maxw: 1760px;
+
+  --ease-out: cubic-bezier(.22, 1, .36, 1);
+  --ease-sweep: cubic-bezier(.76, 0, .24, 1);
+  --h1: clamp(2.5rem, min(6.2vw, 10vh), 5.75rem);
+  --nav-h: 84px;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--white);
+  color: var(--navy);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+img { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; cursor: pointer; }
+button { font: inherit; color: inherit; background: none; border: 0; padding: 0; cursor: pointer; }
+ul { list-style: none; margin: 0; padding: 0; }
+
+:focus-visible { outline: 2px solid var(--yellow); outline-offset: 3px; }
+
+.wrap {
+  width: 100%;
+  max-width: var(--maxw);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+/* ============ HERO ============ */
+.hero {
+  position: relative;
+  isolation: isolate;
+  min-height: max(100svh, 680px);
+  display: flex;
+  flex-direction: column;
+  background: var(--navy);
+  color: var(--white);
+  overflow: hidden;
+}
+
+/* Slides */
+.slides { position: absolute; inset: 0; z-index: -2; background: var(--navy); }
+.slide { position: absolute; inset: 0; opacity: 0; transition: opacity 1000ms cubic-bezier(.4, 0, .2, 1); }
+.slide.is-active { opacity: 1; }
+.slide img {
+  width: 100%; height: 100%; object-fit: cover; object-position: 50% 50%;
+  transform: scale(1);
+  transition: transform 0s linear 1000ms;
+  will-change: transform;
+}
+.slide.is-active img { transform: scale(1.06); transition: transform 7000ms linear 0s; }
+
+.veil {
+  position: absolute; inset: 0; z-index: -1; pointer-events: none;
+  background:
+    linear-gradient(to top, rgba(6, 13, 38, .88) 0%, rgba(6, 13, 38, .55) 28%, rgba(6, 13, 38, 0) 62%),
+    linear-gradient(to right, rgba(10, 21, 56, .9) 0%, rgba(10, 21, 56, .62) 38%, rgba(10, 21, 56, 0) 78%),
+    var(--veil);
+}
+
+/* Nav */
+.nav { border-bottom: 1px solid var(--line); }
+.nav .wrap { height: var(--nav-h); display: flex; align-items: center; gap: 32px; }
+.brand { display: block; flex: none; }
+.brand img { height: 44px; width: auto; }
+.nav-links { display: none; margin-left: auto; gap: clamp(20px, 2.4vw, 40px); }
+.nav-links a {
+  position: relative; font: 500 14px/1 var(--font-display); letter-spacing: .01em; padding: 10px 0;
+  color: var(--white); transition: color .2s;
+}
+.nav-links a::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: 2px; height: 2px; background: var(--yellow);
+  transform: scaleX(0); transform-origin: left; transition: transform .25s var(--ease-out);
+}
+.nav-links a:hover::after, .nav-links a:focus-visible::after { transform: scaleX(1); }
+.nav-end { display: flex; align-items: center; gap: 20px; margin-left: auto; }
+.nav-links + .nav-end { margin-left: 0; }
+.lang { display: flex; align-items: center; gap: 8px; font: 600 13px/1 var(--font-display); letter-spacing: .06em; }
+.lang a { color: var(--text-55); padding: 8px 2px; transition: color .2s; }
+.lang a:hover { color: var(--white); }
+.lang a[aria-current="true"] { color: var(--white); }
+.lang i { width: 1px; height: 12px; background: var(--line-2); }
+
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 12px;
+  font: 700 14px/1 var(--font-display); letter-spacing: .02em;
+  padding: 0 24px; height: 52px; border-radius: 2px;
+  transition: background-color .2s, color .2s, border-color .2s, transform .2s;
+}
+.btn-yellow { background: var(--yellow); color: var(--navy); }
+.btn-yellow:hover { background: #ffe24d; }
+.btn-ghost { color: var(--white); border: 1px solid var(--line-2); }
+.btn-ghost:hover { border-color: var(--white); background: rgba(255, 255, 255, .06); }
+.btn .arrow { width: 18px; height: 12px; transition: transform .25s var(--ease-out); }
+.btn:hover .arrow, .btn:focus-visible .arrow { transform: translateX(4px); }
+.nav .btn { height: 40px; padding: 0 20px; font-size: 13px; display: none; }
+
+.menu-btn { width: 44px; height: 44px; display: grid; place-items: center; margin-right: -10px; }
+.menu-btn svg { width: 24px; height: 24px; }
+
+/* Main content */
+.main { flex: 1; display: flex; align-items: flex-end; padding-top: 48px; padding-bottom: clamp(28px, 4.4vh, 48px); }
+.main .wrap { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--col-gap); align-items: end; }
+.copy { grid-column: 1 / -1; min-width: 0; }
+
+.eyebrow {
+  display: flex; align-items: center; gap: 14px;
+  font: 600 12px/1.4 var(--font-display); letter-spacing: .18em; text-transform: uppercase;
+  margin: 0 0 clamp(18px, 3vh, 28px);
+}
+.eyebrow::before { content: ""; flex: none; width: 32px; height: 2px; background: var(--yellow); }
+
+h1.title {
+  margin: 0;
+  font-family: var(--font-display); font-weight: 800; font-size: var(--h1);
+  line-height: .98; letter-spacing: -.025em; text-wrap: balance;
+}
+.ln { display: block; overflow: hidden; padding: .1em 0; margin: -.1em 0; }
+.ln > .in { display: block; will-change: transform; }
+.rot-ln { color: var(--yellow); }
+.rot {
+  display: block; overflow: hidden; height: 1.1em; margin: -.06em 0;
+  font-size: calc(1em * var(--fit, 1));
+}
+.rot ul { transition: transform 1000ms var(--ease-sweep); }
+.rot li { height: 1.1em; line-height: 1.1em; white-space: nowrap; }
+.rest { font-weight: 700; font-size: .46em; line-height: 1.12; letter-spacing: -.012em; color: var(--white); }
+.rest-1 { margin-top: .5em; }
+
+.sub {
+  margin: clamp(20px, 3.4vh, 32px) 0 0; max-width: 52ch;
+  font: 400 18px/1.6 var(--font-body); color: var(--text-82); text-wrap: pretty;
+}
+.ctas { display: flex; flex-wrap: wrap; gap: 14px; margin-top: clamp(24px, 3.6vh, 36px); }
+
+/* Progress */
+.progress { display: flex; gap: 8px; margin-top: clamp(28px, 5vh, 52px); }
+.progress button { flex: 1; height: 18px; position: relative; display: block; }
+.progress button::before, .progress button i {
+  content: ""; position: absolute; left: 0; right: 0; top: 8px; height: 2px;
+}
+.progress button::before { background: rgba(255, 255, 255, .22); transition: background-color .2s; }
+.progress button:hover::before { background: rgba(255, 255, 255, .4); }
+.progress button i { background: var(--yellow); transform: scaleX(0); transform-origin: left; }
+.progress button.done i { transform: scaleX(1); }
+
+/* Case card */
+.card { display: none; }
+.card-in { transition: opacity .3s ease; }
+.card.swap .card-in { opacity: 0; }
+.card .counter {
+  display: block; font: 600 13px/1 var(--font-display); letter-spacing: .14em;
+  font-variant-numeric: tabular-nums; color: var(--text-82); padding-top: 18px;
+}
+.card .counter b { color: var(--yellow); font-weight: 600; }
+.card .cap {
+  margin: 14px 0 0; font: 600 clamp(17px, 1.5vw, 22px)/1.2 var(--font-display); letter-spacing: -.005em;
+  max-width: 18ch; text-wrap: balance;
+}
+.card-line { height: 1px; background: var(--line-2); }
+
+/* Strip */
+.strip { background: rgba(6, 13, 38, .92); border-top: 1px solid var(--line); }
+.strip .wrap { display: grid; grid-template-columns: 1fr 1fr; }
+.cell { padding: 18px 16px 18px 0; min-width: 0; }
+.cell:nth-child(even) { padding-left: 16px; border-left: 1px solid var(--line); }
+.cell:nth-child(n+3) { border-top: 1px solid var(--line); }
+.cell small {
+  display: block; font: 600 10.5px/1.2 var(--font-display); letter-spacing: .16em; text-transform: uppercase;
+  color: var(--text-55); margin-bottom: 8px;
+}
+.cell strong {
+  display: block; font: 700 14px/1.25 var(--font-display); color: var(--white);
+  font-variant-numeric: tabular-nums;
+}
+.scroll { display: none; }
+.scroll-line { position: relative; width: 2px; height: 5rem; background: rgba(255, 255, 255, .2); overflow: hidden; }
+.scroll-line::after {
+  content: ""; position: absolute; left: 0; top: 0; width: 100%; height: 100%; background: var(--yellow);
+  transform: translateY(-100%); animation: scrollline 1.5s var(--ease-sweep) infinite;
+}
+@keyframes scrollline {
+  0% { transform: translateY(-100%); }
+  60% { transform: translateY(0); }
+  100% { transform: translateY(100%); }
+}
+
+/* ============ BRANDS ============ */
+.brands { background: var(--white); }
+.brands .wrap { min-height: 160px; display: flex; flex-direction: column; justify-content: center; gap: 20px; padding-block: 36px; }
+.brands-label {
+  margin: 0; font: 600 11.5px/1.3 var(--font-display); letter-spacing: .16em; text-transform: uppercase; color: var(--navy-60);
+}
+.brands-list { display: flex; flex-wrap: wrap; gap: 14px 40px; }
+.brands-list li { font: 700 clamp(16px, 1.5vw, 21px)/1 var(--font-display); letter-spacing: -.005em; color: var(--navy-70); white-space: nowrap; }
+
+/* ============ ENTRY (JS only) ============ */
+.js .slides { opacity: 0; transition: opacity 1400ms cubic-bezier(.4, 0, .2, 1); }
+.js .nav { opacity: 0; transform: translateY(-12px); transition: opacity .8s var(--ease-out) .35s, transform .8s var(--ease-out) .35s; }
+.js .eyebrow { opacity: 0; transform: translateY(12px); transition: opacity .8s var(--ease-out) .55s, transform .8s var(--ease-out) .55s; }
+.js .ln > .in { transform: translateY(105%); transition: transform 1000ms var(--ease-out); transition-delay: calc(.65s + var(--i) * 90ms); }
+.js .sub, .js .ctas, .js .card { opacity: 0; transform: translateY(16px); transition: opacity .8s var(--ease-out) .95s, transform .8s var(--ease-out) .95s; }
+.js .progress { opacity: 0; transition: opacity .8s var(--ease-out) 1.05s; }
+.js .strip { transform: translateY(100%); opacity: 0; transition: transform .9s var(--ease-out) 1s, opacity .9s var(--ease-out) 1s; }
+
+.js.go .slides, .js.go .nav, .js.go .eyebrow, .js.go .sub, .js.go .ctas, .js.go .card, .js.go .progress, .js.go .strip { opacity: 1; transform: none; }
+.js.go .ln > .in { transform: none; }
+
+/* ============ RESPONSIVE ============ */
+@media (min-width: 640px) {
+  .eyebrow { font-size: 12.5px; }
+  .nav .btn { display: inline-flex; }
+  .cell strong { font-size: 15px; }
+}
+@media (min-width: 1024px) {
+  .nav-links { display: flex; }
+  .menu-btn { display: none; }
+  .nav-end { gap: 28px; }
+  .copy { grid-column: 1 / 9; }
+  .copy .progress { margin-right: 0; }
+  .card { display: block; grid-column: 10 / 13; align-self: end; padding-bottom: 2px; }
+  .strip .wrap { grid-template-columns: repeat(4, 1fr) auto; align-items: center; }
+  .cell, .cell:nth-child(even) { padding: 22px 24px; border-left: 1px solid var(--line); border-top: 0; }
+  .cell:first-child { padding-left: 0; border-left: 0; }
+  .cell strong { font-size: 16px; }
+  .scroll {
+    display: flex; align-items: center; gap: 16px; padding: 0 0 0 28px; margin-left: 4px; border-left: 1px solid var(--line);
+    align-self: stretch;
+    font: 600 10.5px/1 var(--font-display); letter-spacing: .16em; text-transform: uppercase; color: var(--text-55);
+  }
+  .scroll-line { height: 5rem; align-self: flex-end; }
+  .brands .wrap { flex-direction: row; align-items: center; justify-content: space-between; gap: 48px; }
+  .brands-list { justify-content: flex-end; gap: 14px clamp(28px, 3.4vw, 56px); }
+}
+@media (max-width: 1023px) {
+  .nav-end { margin-left: auto; }
+}
+@media (max-width: 639px) {
+  :root { --nav-h: 72px; }
+  .brand img { height: 36px; }
+  .nav-end { gap: 12px; }
+  .sub { font-size: 16px; line-height: 1.55; }
+  .rest { font-size: .56em; }
+  .eyebrow { font-size: 10.5px; letter-spacing: .14em; gap: 10px; }
+  .eyebrow::before { width: 24px; }
+  .progress { margin-top: 24px; }
+  .ctas .btn { height: 48px; }
+  .ctas .btn { width: 100%; }
+  .main { padding-top: 32px; }
+}
+
+/* ============ REDUCED MOTION ============ */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition-duration: 0s !important; transition-delay: 0s !important; }
+  .slide.is-active img { transform: none; }
+}
+</style>
+</head>
+<body>
+
+<header class="hero" id="hero">
+  <div class="slides" aria-hidden="false">
+    <div class="slide is-active"><img src="img/exhibicion-supermercado-duo.jpg" alt="Gran exhibición temática de marca instalada en un supermercado" fetchpriority="high"></div>
+    <div class="slide"><img src="img/stand-torre-duo.jpg" alt="Stand de feria con torres verticales iluminadas en un pabellón" loading="eager"></div>
+    <div class="slide"><img src="img/activacion-btl-duo.jpg" alt="Activación BTL con proyección en un espacio oscuro" loading="eager"></div>
+    <div class="slide"><img src="img/stand-arco-carton-duo.jpg" alt="Stand de feria con arco construido en cartón estructural" loading="eager"></div>
+  </div>
+  <div class="veil"></div>
+
+  <nav class="nav" aria-label="Principal">
+    <div class="wrap">
+      <a class="brand" href="#" aria-label="Imágenes Gráficas BIC, inicio"><img src="img/logo-ig-blanco.png" alt="Imágenes Gráficas" width="168" height="44"></a>
+      <ul class="nav-links">
+        <li><a href="#">Soluciones</a></li>
+        <li><a href="#">Casos de éxito</a></li>
+        <li><a href="#">Capacidades</a></li>
+        <li><a href="#">Sostenibilidad</a></li>
+        <li><a href="#">Nosotros</a></li>
+        <li><a href="#">Contacto</a></li>
+      </ul>
+      <div class="nav-end">
+        <div class="lang" aria-label="Idioma"><a href="#" aria-current="true" lang="es">ES</a><i aria-hidden="true"></i><a href="#" lang="en">EN</a></div>
+        <a class="btn btn-yellow" href="#">Cotizar</a>
+        <button class="menu-btn" type="button" aria-label="Abrir menú">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 7h18M3 12h18M3 17h18"/></svg>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <div class="main">
+    <div class="wrap">
+      <div class="copy">
+        <p class="eyebrow">Imágenes Gráficas BIC · Desde 1989</p>
+        <h1 class="title" id="title" aria-label="Exhibidores, stands de feria, activaciones BTL y soluciones en cartón que diseñamos, producimos e instalamos bajo un mismo techo.">
+          <span class="ln rot-ln" style="--i:0" aria-hidden="true"><span class="in">
+            <span class="rot" id="rot"><ul id="rotList">
+              <li>Exhibidores</li>
+              <li>Stands de feria</li>
+              <li>Activaciones BTL</li>
+              <li>Soluciones en cartón</li>
+            </ul></span>
+          </span></span>
+          <span class="ln rest rest-1" style="--i:1" aria-hidden="true"><span class="in">que diseñamos, producimos</span></span>
+          <span class="ln rest" style="--i:2" aria-hidden="true"><span class="in">e instalamos bajo un mismo techo.</span></span>
+        </h1>
+        <p class="sub">Exhibidores, stands, activaciones BTL y promocionales concebidos, fabricados e instalados por un solo equipo. Planta propia en Cali con producción 24/7.</p>
+        <div class="ctas">
+          <a class="btn btn-yellow" href="#">Cotizar un proyecto
+            <svg class="arrow" viewBox="0 0 18 12" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M0 6h16M11 1l5 5-5 5"/></svg>
+          </a>
+          <a class="btn btn-ghost" href="#">Ver casos de éxito</a>
+        </div>
+        <div class="progress" id="progress" role="group" aria-label="Seleccionar proyecto">
+          <button type="button" aria-label="Exhibidores, proyecto 1 de 4"><i></i></button>
+          <button type="button" aria-label="Stands de feria, proyecto 2 de 4"><i></i></button>
+          <button type="button" aria-label="Activaciones BTL, proyecto 3 de 4"><i></i></button>
+          <button type="button" aria-label="Soluciones en cartón, proyecto 4 de 4"><i></i></button>
+        </div>
+      </div>
+      <aside class="card" id="card" aria-hidden="true">
+        <div class="card-line"></div>
+        <div class="card-in">
+          <span class="counter"><b id="cardNum">01</b> / 04</span>
+          <p class="cap" id="cardCap">Exhibición en supermercado</p>
+        </div>
+      </aside>
+    </div>
+  </div>
+
+  <div class="strip">
+    <div class="wrap">
+      <div class="cell"><small>Trayectoria</small><strong>Desde 1989</strong></div>
+      <div class="cell"><small>Planta propia</small><strong>6.500 m² · 24/7</strong></div>
+      <div class="cell"><small>Sedes</small><strong>Cali · Bogotá · Miami</strong></div>
+      <div class="cell"><small>Modelo</small><strong>Empresa BIC</strong></div>
+      <div class="scroll" aria-hidden="true"><span>Descubra</span><span class="scroll-line"></span></div>
+    </div>
+  </div>
+</header>
+
+<section class="brands" aria-label="Clientes">
+  <div class="wrap">
+    <p class="brands-label">Marcas que confían en nosotros</p>
+    <ul class="brands-list">
+      <li>Postobón</li><li>Coomeva</li><li>Colgate</li><li>Dettol</li><li>Fundación Valle del Lili</li>
+    </ul>
+  </div>
+</section>
+
+<script>
+(function () {
+  var root = document.documentElement;
+  var hero = document.getElementById('hero');
+  var slides = hero.querySelectorAll('.slide');
+  var segs = hero.querySelectorAll('#progress button');
+  var fills = hero.querySelectorAll('#progress i');
+  var rotList = document.getElementById('rotList');
+  var rot = document.getElementById('rot');
+  var card = document.getElementById('card');
+  var cardNum = document.getElementById('cardNum');
+  var cardCap = document.getElementById('cardCap');
+  var caps = ['Exhibición en supermercado', 'Stand de feria', 'Activación BTL con proyección', 'Stand en cartón estructural'];
+  var N = slides.length, DUR = 4500;
+  var cur = 0, elapsed = 0, last = 0, running = false, hoverPause = false, hidden = false, offscreen = false, swapTimer;
+
+  /* Fit the longest rotating word in one line */
+  function fit() {
+    root.style.setProperty('--fit', 1);
+    var avail = rot.clientWidth, max = 0;
+    var items = rotList.children;
+    for (var i = 0; i < items.length; i++) {
+      var r = document.createRange(); r.selectNodeContents(items[i]);
+      max = Math.max(max, r.getBoundingClientRect().width);
+    }
+    var f = max > avail ? (avail / max) * 0.985 : 1;
+    root.style.setProperty('--fit', f.toFixed(4));
+  }
+
+  function setFills() {
+    for (var i = 0; i < N; i++) {
+      var f = fills[i];
+      if (i < cur) { segs[i].classList.add('done'); f.style.transform = ''; }
+      else if (i > cur) { segs[i].classList.remove('done'); f.style.transform = 'scaleX(0)'; }
+      else { segs[i].classList.remove('done'); f.style.transform = 'scaleX(' + (elapsed / DUR).toFixed(4) + ')'; }
+    }
+  }
+
+  function show(n, instant) {
+    cur = (n + N) % N; elapsed = 0;
+    for (var i = 0; i < N; i++) {
+      slides[i].classList.toggle('is-active', i === cur);
+      segs[i].setAttribute('aria-current', i === cur ? 'true' : 'false');
+    }
+    rotList.style.transform = 'translateY(' + (-cur * 1.1) + 'em)';
+    clearTimeout(swapTimer);
+    card.classList.add('swap');
+    swapTimer = setTimeout(function () {
+      cardNum.textContent = '0' + (cur + 1);
+      cardCap.textContent = caps[cur];
+      card.classList.remove('swap');
+    }, instant ? 0 : 300);
+    setFills();
+  }
+
+  function frame(t) {
+    if (!running) return;
+    var dt = Math.min(t - last, 100); last = t;
+    if (!hoverPause && !hidden && !offscreen) {
+      elapsed += dt;
+      if (elapsed >= DUR) show(cur + 1); else setFills();
+    }
+    requestAnimationFrame(frame);
+  }
+  function start() {
+    if (running) return;
+    running = true; last = performance.now(); requestAnimationFrame(frame);
+  }
+
+  segs.forEach(function (b, i) { b.addEventListener('click', function () { if (i !== cur) show(i); else { elapsed = 0; setFills(); } }); });
+  hero.addEventListener('mousemove', function (e) { if (e.movementX || e.movementY) hoverPause = true; });
+  hero.addEventListener('mouseleave', function () { hoverPause = false; });
+  hero.addEventListener('focusin', function () { hoverPause = true; });
+  hero.addEventListener('focusout', function () { hoverPause = false; });
+  document.addEventListener('visibilitychange', function () { hidden = document.hidden; });
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(function (e) { offscreen = !e[0].isIntersecting; }, { threshold: 0.15 }).observe(hero);
+  }
+
+  show(0, true);
+  fit();
+  window.addEventListener('resize', fit);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(fit);
+
+  function go() {
+    fit();
+    root.classList.add('go');
+    setTimeout(start, 1700);
+  }
+  var started = false;
+  function once() { if (started) return; started = true; requestAnimationFrame(function () { requestAnimationFrame(go); }); }
+  if (document.fonts && document.fonts.ready) { document.fonts.ready.then(once); setTimeout(once, 1200); } else { once(); }
+  if (!root.classList.contains('js')) start();
+})();
+</script>
+</body>
+</html>

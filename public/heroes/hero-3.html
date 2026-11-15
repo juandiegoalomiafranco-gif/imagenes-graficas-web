@@ -1,0 +1,324 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Opción 3 · Certificado de escala</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Montserrat:wght@500;600;700;800&family=Open+Sans:wght@400;600&display=swap">
+<script>document.documentElement.classList.add('js');</script>
+<style>
+:root{
+  --navy:#0A1538;
+  --navy-2:#111C44;
+  --yellow:#FFD602;
+  --bg:#F4F5F8;
+  --white:#FFFFFF;
+  --ink:#0A1538;
+  --ink-78:rgba(10,21,56,.78);
+  --ink-70:rgba(10,21,56,.70);
+  --ink-65:rgba(10,21,56,.72);
+  --line:rgba(10,21,56,.14);
+  --line-nav:rgba(10,21,56,.10);
+  --crop:rgba(10,21,56,.40);
+  --on-navy-60:rgba(255,255,255,.68);
+  --on-navy-55:rgba(255,255,255,.66);
+  --on-navy-line:rgba(255,255,255,.12);
+  --f-display:'Montserrat','Helvetica Neue',Arial,sans-serif;
+  --f-body:'Open Sans','Segoe UI',Arial,sans-serif;
+  --f-mono:'IBM Plex Mono','SFMono-Regular',Menlo,Consolas,monospace;
+  --gutter:5vw;--nav-h:72px;
+  --ease-out:cubic-bezier(.22,1,.36,1);
+  --ease-sweep:cubic-bezier(.76,0,.24,1);
+  --band-h:clamp(200px,21.5vw,340px);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none;cursor:pointer}
+button{font:inherit;cursor:pointer}
+:focus-visible{outline:2px solid var(--navy);outline-offset:3px;box-shadow:0 0 0 5px var(--yellow)}
+.ficha :focus-visible{outline-color:var(--white)}
+
+/* ---------- NAV ---------- */
+.nav{background:var(--white);border-bottom:1px solid var(--line-nav);height:var(--nav-h);display:flex;align-items:center;justify-content:space-between;padding:0 var(--gutter);position:relative;z-index:5}
+.nav__logo img{height:44px;width:auto}
+.nav__links{display:flex;gap:clamp(18px,2.2vw,34px);list-style:none;margin:0;padding:0}
+.nav__links a{font-family:var(--f-display);font-weight:500;font-size:14px;color:var(--navy);padding:8px 0;position:relative;transition:color .2s}
+.nav__links a::after{content:"";position:absolute;left:0;right:0;bottom:2px;height:2px;background:var(--navy);transform:scaleX(0);transform-origin:left;transition:transform .25s var(--ease-out)}
+.nav__links a:hover::after{transform:scaleX(1)}
+.nav__right{display:flex;align-items:center;gap:20px}
+.lang{font-family:var(--f-mono);font-size:12px;letter-spacing:.08em;color:var(--ink-65)}
+.lang b{color:var(--navy);font-weight:500}
+.btn-nav{font-family:var(--f-display);font-weight:600;font-size:14px;background:var(--navy);color:var(--white);border:1.5px solid var(--navy);padding:10px 20px;transition:background .2s,color .2s}
+.btn-nav:hover{background:var(--white);color:var(--navy)}
+.menu-btn{display:none;background:none;border:1.5px solid var(--navy);width:44px;height:44px;padding:0;align-items:center;justify-content:center}
+.menu-btn svg{width:20px;height:20px;stroke:var(--navy);stroke-width:1.6;fill:none}
+
+/* ---------- HERO ---------- */
+.hero{min-height:calc(max(100svh,640px) - var(--nav-h));display:flex;flex-direction:column;background:var(--bg)}
+.top{flex:1 1 0;min-height:0;display:grid;grid-template-columns:repeat(12,1fr);column-gap:24px;align-items:center;padding:clamp(20px,2.6vh,32px) var(--gutter) clamp(22px,3vh,36px)}
+.copy{grid-column:1 / span 7;padding-right:2vw}
+.ficha-wrap{grid-column:8 / span 5;justify-self:end;width:100%;max-width:520px}
+
+.eyebrow{display:flex;align-items:center;gap:12px;margin:0 0 clamp(12px,1.8vh,20px);font-family:var(--f-mono);font-weight:500;font-size:12px;text-transform:uppercase;letter-spacing:.12em;color:var(--ink-65);line-height:1.5}
+.eyebrow::before{content:"";flex:none;width:8px;height:8px;background:var(--yellow)}
+
+h1{margin:0;font-family:var(--f-display);font-weight:800;font-size:clamp(2.25rem,min(4.6vw,6.1vh),4.25rem);line-height:1.04;letter-spacing:-.025em;color:var(--navy);text-wrap:balance}
+.ln{display:block;overflow:hidden;padding-bottom:.08em;margin-bottom:-.08em}
+.ln>span{display:block}
+
+.lede{margin:clamp(14px,2vh,22px) 0 0;max-width:52ch;font-size:18px;line-height:1.6;color:var(--ink-78)}
+.ctas{display:flex;flex-wrap:wrap;gap:14px;margin-top:clamp(18px,2.6vh,28px)}
+.btn{display:inline-flex;align-items:center;gap:12px;font-family:var(--f-display);font-weight:700;font-size:15px;padding:13px 24px;border:1.5px solid var(--navy);color:var(--navy);transition:background .2s,color .2s,border-color .2s;min-height:48px}
+.btn--primary{background:var(--yellow);border-color:var(--yellow)}
+.btn--primary svg{transition:transform .25s var(--ease-out)}
+.btn--primary:hover{background:var(--navy);border-color:var(--navy);color:var(--yellow)}
+.btn--primary:hover svg{transform:translateX(4px)}
+.btn--ghost{background:transparent}
+.btn--ghost:hover{background:var(--navy);color:var(--white)}
+.btn svg{width:18px;height:18px;stroke:currentColor;stroke-width:2;fill:none}
+
+.trust{display:flex;flex-wrap:wrap;align-items:center;gap:10px 26px;margin-top:clamp(16px,2.4vh,26px);padding-top:clamp(10px,1.6vh,16px);border-top:1px solid var(--line);max-width:640px}
+.trust__label{font-family:var(--f-mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-65)}
+.trust__names{display:flex;flex-wrap:wrap;gap:6px 22px;list-style:none;margin:0;padding:0;font-family:var(--f-display);font-weight:700;font-size:15px;color:var(--ink-70);letter-spacing:.01em}
+
+/* ---------- FICHA ---------- */
+.ficha-frame{position:relative}
+.crop{position:absolute;width:12px;height:12px;border:0 solid var(--crop)}
+.crop--tl{left:-18px;top:-18px;border-top-width:1px;border-left-width:1px}
+.crop--tr{right:-18px;top:-18px;border-top-width:1px;border-right-width:1px}
+.crop--bl{left:-18px;bottom:-18px;border-bottom-width:1px;border-left-width:1px}
+.crop--br{right:-18px;bottom:-18px;border-bottom-width:1px;border-right-width:1px}
+.ficha{background:var(--navy);color:var(--white);padding:clamp(22px,3.2vh,32px) 30px clamp(18px,2.6vh,26px)}
+.ficha__head{display:flex;justify-content:space-between;align-items:baseline;font-family:var(--f-mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;padding-bottom:clamp(12px,1.8vh,18px);border-bottom:1px solid var(--on-navy-line);position:relative}
+.ficha__head span:first-child{color:var(--on-navy-60)}
+.ficha__head span:last-child{color:var(--yellow)}
+.ficha dl{margin:0}
+.row{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:clamp(8px,1.4vh,14px) 0;border-bottom:1px solid var(--on-navy-line);position:relative}
+.row dt{font-family:var(--f-mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--on-navy-55);flex:none}
+.row dd{margin:0;font-family:var(--f-display);font-weight:700;font-size:1.35rem;line-height:1.2;text-align:right;font-variant-numeric:tabular-nums;color:var(--white)}
+.ficha__foot{margin:clamp(14px,2vh,20px) 0 0;font-family:var(--f-mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--yellow);line-height:1.5}
+
+/* ---------- BANDA PLANTA ---------- */
+.band{position:relative;width:100%;height:var(--band-h);aspect-ratio:2000/431;overflow:hidden;background:var(--navy-2)}
+.band__img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center}
+.band::after{content:"";position:absolute;left:0;right:0;bottom:0;height:45%;background:linear-gradient(to top,rgba(10,21,56,.34),rgba(10,21,56,0));pointer-events:none}
+.tag{position:absolute;bottom:20px;z-index:2;font-family:var(--f-mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;padding:9px 14px;line-height:1.2}
+.tag--l{left:var(--gutter);background:var(--navy);color:var(--white)}
+.tag--r{right:var(--gutter);background:var(--yellow);color:var(--navy);font-weight:500}
+
+/* ---------- CONTINUIDAD ---------- */
+.next{background:var(--white);padding:52px var(--gutter) 56px;min-height:150px}
+.next__label{font-family:var(--f-mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-65);margin:0 0 12px;font-weight:500}
+.next h2{margin:0;font-family:var(--f-display);font-weight:800;font-size:2rem;line-height:1.15;letter-spacing:-.02em;color:var(--navy)}
+
+/* ---------- ANIMACION (solo con JS) ---------- */
+.js .a-fade{opacity:0}
+.js .a-up{opacity:0;transform:translateY(20px)}
+.js .ln>span{transform:translateY(105%)}
+.js .ficha-frame{clip-path:inset(0 -30px 100% -30px)}
+.js .row,.js .ficha__head,.js .ficha__foot{opacity:0;transform:translateY(8px)}
+.js .row,.js .ficha__head{border-bottom-color:transparent}
+.row::after,.ficha__head::after{content:"";position:absolute;left:0;bottom:-1px;height:1px;width:100%;background:var(--on-navy-line);transform-origin:left}
+.js .row::after,.js .ficha__head::after{transform:scaleX(0)}
+.go .row::after,.go .ficha__head::after{transform:scaleX(1);transition:transform 800ms var(--ease-sweep);transition-delay:inherit}
+.js .crop{opacity:0}
+.js .band{clip-path:inset(0 100% 0 0)}
+.js .band__img{transform:scale(1.06)}
+.js .tag{opacity:0;transform:translateY(8px)}
+
+.go .a-fade{opacity:1;transition:opacity 500ms ease}
+.go .a-up{opacity:1;transform:none;transition:opacity 800ms var(--ease-out),transform 800ms var(--ease-out)}
+.go .ln>span{transform:none;transition:transform 1000ms var(--ease-out)}
+.go .ficha-frame{clip-path:inset(0 -30px -30px -30px);transition:clip-path 900ms var(--ease-sweep)}
+.go .row,.go .ficha__head,.go .ficha__foot{opacity:1;transform:none;transition:opacity 500ms var(--ease-out),transform 500ms var(--ease-out)}
+.go .crop{opacity:1;transition:opacity 600ms ease}
+.go .band{clip-path:inset(0 0 0 0);transition:clip-path 1200ms var(--ease-sweep)}
+.go .band__img{transform:none;transition:transform 1400ms var(--ease-out)}
+.go .tag{opacity:1;transform:none;transition:opacity 600ms var(--ease-out),transform 600ms var(--ease-out)}
+
+@media (prefers-reduced-motion:reduce){
+  .js .a-fade,.js .a-up,.js .row,.js .ficha__head,.js .ficha__foot,.js .crop,.js .tag{opacity:1!important;transform:none!important}
+  .js .ln>span,.js .band__img{transform:none!important}
+  .js .ficha-frame,.js .band{clip-path:none!important}
+  *{transition:none!important;animation:none!important}
+}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width:1100px){
+  .nav__links{display:none}
+  .menu-btn{display:inline-flex}
+  .copy{grid-column:1 / span 12;padding-right:0}
+  .ficha-wrap{grid-column:1 / span 12;justify-self:stretch;max-width:none;margin-top:44px}
+  .hero{min-height:0}
+  .top{flex:none;align-items:start;row-gap:0;padding-top:36px;padding-bottom:52px}
+}
+@media (max-width:640px){
+  :root{--gutter:20px;--nav-h:64px}
+  .nav__logo img{height:36px}
+  .nav__right{gap:12px}
+  .btn-nav{display:none}
+  .hero{min-height:0}
+  .eyebrow{font-size:11px;align-items:flex-start;letter-spacing:.1em}
+  .eyebrow::before{margin-top:5px}
+  .lede{font-size:16px}
+  .btn{width:100%;justify-content:space-between}
+  .ficha{padding:22px 20px 20px}
+  .row dd{font-size:1rem}
+  .row dt{font-size:10px;letter-spacing:.1em}
+  .ficha-wrap{padding:0 6px}
+  .crop--tl{left:-6px;top:-6px}.crop--tr{right:-6px;top:-6px}.crop--bl{left:-6px;bottom:-6px}.crop--br{right:-6px;bottom:-6px}
+  .tag{font-size:10px;padding:8px 10px;bottom:12px}
+  .tag--r{display:none}
+  .band__img{object-position:center}
+  .next{padding:40px var(--gutter) 44px}
+  .next h2{font-size:1.5rem}
+}
+@media (min-width:1101px) and (max-height:760px){
+  .row{padding:9px 0}
+}
+</style>
+</head>
+<body>
+
+<header class="nav a-fade" id="nav">
+  <a class="nav__logo" href="#" aria-label="Imágenes Gráficas, inicio"><img src="img/logo-ig-oscuro.png" alt="Imágenes Gráficas" width="168" height="44"></a>
+  <nav aria-label="Principal">
+    <ul class="nav__links">
+      <li><a href="#">Soluciones</a></li>
+      <li><a href="#">Casos de éxito</a></li>
+      <li><a href="#">Capacidades</a></li>
+      <li><a href="#">Sostenibilidad</a></li>
+      <li><a href="#">Nosotros</a></li>
+      <li><a href="#">Contacto</a></li>
+    </ul>
+  </nav>
+  <div class="nav__right">
+    <span class="lang" aria-label="Idioma"><b>ES</b> / EN</span>
+    <a class="btn-nav" href="#">Cotizar</a>
+    <button class="menu-btn" type="button" aria-label="Abrir menú"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M2 5h16M2 10h16M2 15h16"/></svg></button>
+  </div>
+</header>
+
+<section class="hero" aria-label="Imágenes Gráficas BIC">
+  <div class="top">
+    <div class="copy">
+      <p class="eyebrow a-fade" id="eyebrow">Imágenes Gráficas BIC S.A.S. — Cali · Bogotá · Miami</p>
+      <h1 id="h1">Su marca en el punto de venta, resuelta por un solo aliado.</h1>
+      <p class="lede a-up" data-d="0">Diseñamos, producimos e implementamos exhibidores, stands, activaciones BTL y promocionales. Todo se fabrica en nuestra planta propia, que opera 24/7.</p>
+      <div class="ctas a-up" data-d="1">
+        <a class="btn btn--primary" href="#">Cotizar un proyecto <svg viewBox="0 0 18 18" aria-hidden="true"><path d="M2 9h13M10 4l5 5-5 5"/></svg></a>
+        <a class="btn btn--ghost" href="#">Ver casos de éxito</a>
+      </div>
+      <div class="trust a-up" data-d="2">
+        <span class="trust__label">Marcas que confían en nosotros</span>
+        <ul class="trust__names"><li>Postobón</li><li>Coomeva</li><li>Colgate</li><li>Dettol</li></ul>
+      </div>
+    </div>
+
+    <div class="ficha-wrap">
+      <div class="ficha-frame" id="ficha">
+        <span class="crop crop--tl"></span><span class="crop crop--tr"></span><span class="crop crop--bl"></span><span class="crop crop--br"></span>
+        <div class="ficha">
+          <div class="ficha__head"><span>Ficha de capacidad</span><span>Ref. IG-1989</span></div>
+          <dl>
+            <div class="row"><dt>Trayectoria</dt><dd>Desde 1989</dd></div>
+            <div class="row"><dt>Planta propia</dt><dd><span data-count="6500">6.500</span> m²</dd></div>
+            <div class="row"><dt>Producción</dt><dd>24/7</dd></div>
+            <div class="row"><dt>Equipo</dt><dd>+<span data-count="280">280</span> personas</dd></div>
+            <div class="row"><dt>Impresión</dt><dd><span data-count="28">28</span> cuerpos Heidelberg</dd></div>
+            <div class="row"><dt>Sedes</dt><dd>Cali · Bogotá · Miami</dd></div>
+          </dl>
+          <p class="ficha__foot">Empresa BIC — Beneficio e Interés Colectivo</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="band" id="band">
+    <img class="band__img" src="img/planta.jpg" alt="Panorámica de la planta de producción de Imágenes Gráficas en Cali, con operarios y maquinaria" width="2000" height="431">
+    <span class="tag tag--l">Planta de producción · Cali, Colombia</span>
+    <span class="tag tag--r">Opera 24/7</span>
+  </div>
+</section>
+
+<section class="next">
+  <p class="next__label">01 — Soluciones</p>
+  <h2>Soluciones para cada momento de su marca</h2>
+</section>
+
+<script>
+(function(){
+  var root=document.documentElement;
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var h1=document.getElementById('h1');
+  var original=h1.innerHTML;
+
+  function fmt(n){return n.toLocaleString('es-CO');}
+  function counters(run){
+    document.querySelectorAll('[data-count]').forEach(function(el){
+      var end=+el.dataset.count;
+      if(!run||reduce){el.textContent=fmt(end);return;}
+      var start=null,dur=900;
+      el.textContent=fmt(0);
+      function step(t){
+        if(start===null)start=t;
+        var p=Math.min((t-start)/dur,1),e=1-Math.pow(1-p,3);
+        el.textContent=fmt(Math.round(end*e));
+        if(p<1)requestAnimationFrame(step);
+      }
+      setTimeout(function(){requestAnimationFrame(step);},1250);
+    });
+  }
+
+  function splitLines(){
+    var words=h1.textContent.trim().split(/\s+/);
+    h1.innerHTML=words.map(function(w){return '<span class="w" style="display:inline-block">'+w+'</span>';}).join(' ');
+    var lines=[],top=null;
+    h1.querySelectorAll('.w').forEach(function(w){
+      var t=w.offsetTop;
+      if(top===null||Math.abs(t-top)>4){lines.push([]);top=t;}
+      lines[lines.length-1].push(w.textContent);
+    });
+    h1.setAttribute('aria-label',h1.textContent);
+    h1.innerHTML=lines.map(function(l,i){return '<span class="ln" aria-hidden="true"><span style="transition-delay:'+(250+i*90)+'ms">'+l.join(' ')+'</span></span>';}).join('');
+  }
+
+  function start(){
+    if(reduce){counters(false);return;}
+    splitLines();
+    // retardos escalonados
+    var ups=document.querySelectorAll('.a-up');
+    ups.forEach(function(el,i){el.style.transitionDelay=(650+i*110)+'ms';});
+    document.getElementById('eyebrow').style.transitionDelay='150ms';
+    var rows=document.querySelectorAll('.ficha__head,.row,.ficha__foot');
+    rows.forEach(function(el,i){el.style.transitionDelay=(750+i*60)+'ms';});
+    var frame=document.getElementById('ficha');
+    frame.style.transitionDelay='500ms';
+    document.querySelectorAll('.crop').forEach(function(c){c.style.transitionDelay='1100ms';});
+    var band=document.getElementById('band');
+    band.style.transitionDelay='900ms';
+    band.querySelector('.band__img').style.transitionDelay='900ms';
+    band.querySelectorAll('.tag').forEach(function(t,i){t.style.transitionDelay=(1900+i*120)+'ms';});
+    void root.offsetWidth;
+    requestAnimationFrame(function(){
+      root.classList.add('go');
+      counters(true);
+    });
+    setTimeout(function(){h1.innerHTML=original;h1.removeAttribute('aria-label');},3200);
+  }
+
+  if(reduce){counters(false);return;}
+  var started=false;
+  function go(){if(started)return;started=true;start();}
+  if(document.fonts&&document.fonts.ready){
+    document.fonts.ready.then(go);
+    setTimeout(go,1500);
+  }else{window.addEventListener('load',go);}
+})();
+</script>
+</body>
+</html>

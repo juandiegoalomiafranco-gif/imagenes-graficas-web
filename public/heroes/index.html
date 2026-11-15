@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Heroes Imágenes Gráficas</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Open+Sans:wght@400;600&display=swap">
+<style>
+/* Layout: mesa de luz — barra de selección arriba, una prueba a escala real debajo, ficha de la opción al lado. */
+:root {
+  color-scheme: dark;
+  --navy: #0A1538;
+  --navy-deep: #060D26;
+  --navy-raise: #111C44;
+  --line: rgba(255, 255, 255, .14);
+  --ink: #FFFFFF;
+  --ink-soft: rgba(255, 255, 255, .72);
+  --ink-mute: rgba(255, 255, 255, .5);
+  --yellow: #FFD602;
+  --display: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+  --body: "Open Sans", "Helvetica Neue", Arial, sans-serif;
+}
+*, *::before, *::after { box-sizing: border-box; }
+html, body { margin: 0; }
+body {
+  background: var(--navy-deep);
+  color: var(--ink);
+  font-family: var(--body);
+  font-size: 15px;
+  line-height: 1.55;
+}
+.wrap {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding-block: 28px 56px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+.head { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 12px 32px; }
+.eyebrow {
+  font-family: var(--display); font-weight: 600; font-size: 11px;
+  letter-spacing: .18em; text-transform: uppercase; color: var(--yellow); margin: 0 0 6px;
+}
+h1 {
+  font-family: var(--display); font-weight: 800; font-size: clamp(1.5rem, 3.2vw, 2.25rem);
+  line-height: 1.08; letter-spacing: -.02em; margin: 0; text-wrap: balance;
+}
+.head p { margin: 0; max-width: 46ch; color: var(--ink-soft); }
+
+.tabs { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 0; border: 1px solid var(--line); }
+.tab {
+  appearance: none; background: transparent; color: var(--ink-soft); cursor: pointer;
+  border: 0; border-right: 1px solid var(--line); padding: 14px 16px; text-align: left;
+  font-family: var(--display); min-width: 0;
+  transition: background-color .2s ease, color .2s ease;
+}
+.tab:last-child { border-right: 0; }
+.tab .n { display: block; font-size: 11px; font-weight: 600; letter-spacing: .16em; color: var(--ink-mute); transition: color .2s ease; }
+.tab .t { display: block; font-size: 14px; font-weight: 700; line-height: 1.25; margin-top: 4px; }
+.tab:hover { background: var(--navy-raise); color: var(--ink); }
+.tab[aria-selected="true"] { background: var(--yellow); color: var(--navy); }
+.tab[aria-selected="true"] .n { color: rgba(10, 21, 56, .7); }
+.tab:focus-visible, .seg button:focus-visible, .open:focus-visible { outline: 2px solid var(--yellow); outline-offset: 2px; }
+
+.stage { display: grid; grid-template-columns: minmax(0, 1fr) 300px; gap: 22px; align-items: start; }
+.proof { min-width: 0; display: flex; flex-direction: column; gap: 12px; }
+.bar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px; }
+.seg { display: inline-flex; border: 1px solid var(--line); }
+.seg button {
+  appearance: none; background: transparent; border: 0; color: var(--ink-soft); cursor: pointer;
+  font-family: var(--display); font-weight: 600; font-size: 12px; letter-spacing: .08em; text-transform: uppercase;
+  padding: 9px 14px; transition: background-color .2s ease, color .2s ease;
+}
+.seg button[aria-pressed="true"] { background: var(--ink); color: var(--navy); }
+.open {
+  font-family: var(--display); font-weight: 600; font-size: 12px; letter-spacing: .08em; text-transform: uppercase;
+  color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--yellow); padding-bottom: 2px;
+}
+.open:hover { color: var(--yellow); }
+
+/* La prueba: el hero se renderiza a tamaño real (1440×900 o 390×844) y se escala al ancho disponible. */
+.frame {
+  position: relative; width: 100%; overflow: hidden; background: var(--navy) center top / cover no-repeat;
+  border: 1px solid var(--line);
+}
+.frame.mobile { background-color: var(--navy-deep); background-image: none !important; display: flex; justify-content: center; }
+.frame iframe { display: block; border: 0; transform-origin: 0 0; background: transparent; }
+.frame.mobile iframe { transform-origin: 50% 0; }
+.hint { margin: 0; font-size: 13px; color: var(--ink-mute); }
+
+.sheet { border: 1px solid var(--line); background: var(--navy); padding: 20px; display: flex; flex-direction: column; gap: 16px; }
+.sheet h2 { font-family: var(--display); font-weight: 800; font-size: 1.25rem; line-height: 1.15; letter-spacing: -.01em; margin: 0; }
+.sheet .lead { margin: 0; color: var(--ink-soft); }
+.sheet dl { margin: 0; display: grid; gap: 12px; }
+.sheet dt { font-family: var(--display); font-weight: 600; font-size: 10.5px; letter-spacing: .16em; text-transform: uppercase; color: var(--ink-mute); }
+.sheet dd { margin: 2px 0 0; color: var(--ink); }
+.sheet .rule { height: 1px; background: var(--line); }
+
+@media (max-width: 980px) {
+  .stage { grid-template-columns: minmax(0, 1fr); }
+  .tabs { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+  .tab { padding: 12px 8px; text-align: center; }
+  .tab .t { display: none; }
+  .tab .n { font-size: 13px; color: inherit; }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="head">
+    <div>
+      <p class="eyebrow">Imágenes Gráficas BIC · Rediseño web</p>
+      <h1>Cinco direcciones para el hero</h1>
+    </div>
+    <p>Mismo contenido, misma paleta navy y amarillo, cinco maneras de abrir la página. Cada prueba es el hero real, con sus animaciones.</p>
+  </header>
+
+  <div class="tabs" role="tablist" aria-label="Opciones de hero" id="tabs"></div>
+
+  <div class="stage">
+    <section class="proof" aria-live="off">
+      <div class="bar">
+        <div class="seg" role="group" aria-label="Tamaño de vista previa">
+          <button type="button" id="btn-desktop" aria-pressed="true">Escritorio</button>
+          <button type="button" id="btn-mobile" aria-pressed="false">Móvil</button>
+        </div>
+        <a class="open" id="open" href="hero-1.html" target="_blank" rel="noopener">Abrir a pantalla completa</a>
+      </div>
+      <div class="frame" id="frame"><iframe id="view" title="Vista previa del hero" src="hero-1.html" loading="eager"></iframe></div>
+      <p class="hint">La vista de escritorio se muestra a 1440 px y se ajusta al ancho disponible. Para verla a tamaño real, ábrala a pantalla completa.</p>
+    </section>
+
+    <aside class="sheet" id="sheet" aria-live="polite"></aside>
+  </div>
+</div>
+
+<script>
+(function () {
+  var OPTIONS = [
+    { n: '01', t: 'Cinemático rotatorio', file: 'hero-1.html', shot: 'shots/hero-1-desktop.jpg',
+      lead: 'Foto a sangre que cambia mientras cambia la primera palabra del titular.',
+      type: 'Montserrat + Open Sans (la tipografía actual de la marca)',
+      ref: 'Pentagram (rotador) y Place Laval (franja inferior)',
+      says: 'Volumen de trabajo real y escala.',
+      fit: 'Quiere el impacto más inmediato y va a contar con buena fotografía propia.',
+      risk: 'Es la opción que más depende de la calidad de las fotos.' },
+    { n: '02', t: 'Editorial', file: 'hero-2.html', shot: 'shots/hero-2-desktop.jpg',
+      lead: 'Titular serif enorme sobre navy y un exhibidor real presentado como objeto de lujo.',
+      type: 'Instrument Serif + Montserrat + Open Sans',
+      ref: 'Wolff Olins (tipografía y entrada) y Fedrigoni (producto sobre oscuro)',
+      says: 'Criterio y experticia: en manos de expertos.',
+      fit: 'Busca verse al nivel de una consultora internacional y diferenciarse de todo el sector.',
+      risk: 'La serif es un cambio visible frente a la marca actual.' },
+    { n: '03', t: 'Certificado de escala', file: 'hero-3.html', shot: 'shots/hero-3-desktop.jpg',
+      lead: 'Fondo claro, ficha de capacidad con datos duros y la planta real a todo lo ancho.',
+      type: 'Montserrat + Open Sans + IBM Plex Mono',
+      ref: 'Sappi (estructura corporativa y certificaciones)',
+      says: 'Evidencia antes que promesa: cifras y planta.',
+      fit: 'Su prioridad es convencer a Compras y a decisores racionales.',
+      risk: 'Es la más sobria: menos emoción en el primer segundo.' },
+    { n: '04', t: 'Bajo un mismo techo', file: 'hero-4.html', shot: 'shots/hero-4-desktop.jpg',
+      lead: 'La promesa de la empresa convertida en forma: las fotos se ven a través de una casa trazada como troquel.',
+      type: 'Archivo expandida + Open Sans',
+      ref: 'Concepto propio a partir del claim de la marca',
+      says: 'Una idea de marca memorable y propia.',
+      fit: 'Quiere que la web se recuerde y que el claim deje de ser solo una frase.',
+      risk: 'La más atrevida; usa más amarillo y una tipografía nueva.' },
+    { n: '05', t: 'Cadena integrada', file: 'hero-5.html', shot: 'shots/hero-5-desktop.jpg',
+      lead: 'Exhibidores reales en fila y la cadena de cuatro etapas que la empresa resuelve sin terceros.',
+      type: 'Red Hat Display + Red Hat Text',
+      ref: 'Páginas de producto B2B; patrón de proceso de Quad / STI',
+      says: 'El modelo integrado, demostrado en cinco segundos.',
+      fit: 'Quiere explicar de inmediato qué hace distinto a Imágenes Gráficas.',
+      risk: 'Más informativa que emocional; depende de buenos recortes de producto.' }
+  ];
+
+  var tabs = document.getElementById('tabs');
+  var view = document.getElementById('view');
+  var frame = document.getElementById('frame');
+  var sheet = document.getElementById('sheet');
+  var open = document.getElementById('open');
+  var bD = document.getElementById('btn-desktop');
+  var bM = document.getElementById('btn-mobile');
+  var current = 0;
+  var mode = 'desktop';
+
+  function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+
+  OPTIONS.forEach(function (o, i) {
+    var b = document.createElement('button');
+    b.type = 'button'; b.className = 'tab'; b.id = 'tab-' + (i + 1);
+    b.setAttribute('role', 'tab');
+    b.setAttribute('aria-label', 'Opción ' + (i + 1) + ': ' + o.t);
+    b.innerHTML = '<span class="n">' + o.n + '</span><span class="t">' + esc(o.t) + '</span>';
+    b.addEventListener('click', function () { select(i, true); });
+    tabs.appendChild(b);
+  });
+
+  function fit() {
+    var w = frame.clientWidth;
+    if (mode === 'desktop') {
+      var s = Math.min(1, w / 1440);
+      view.style.width = '1440px'; view.style.height = '900px';
+      view.style.transform = 'scale(' + s + ')';
+      frame.style.height = Math.round(900 * s) + 'px';
+    } else {
+      var sm = Math.min(1, (w - 24) / 390);
+      view.style.width = '390px'; view.style.height = '844px';
+      view.style.transform = 'scale(' + sm + ')';
+      frame.style.height = Math.round(844 * sm) + 'px';
+    }
+  }
+
+  function select(i, userAction) {
+    current = i;
+    var o = OPTIONS[i];
+    Array.prototype.forEach.call(tabs.children, function (el, k) { el.setAttribute('aria-selected', k === i ? 'true' : 'false'); });
+    frame.style.backgroundImage = 'url("' + o.shot + '")';
+    view.src = o.file;
+    open.href = o.file;
+    sheet.innerHTML =
+      '<div><p class="eyebrow" style="margin:0 0 6px">Opción ' + o.n + '</p><h2>' + esc(o.t) + '</h2></div>' +
+      '<p class="lead">' + esc(o.lead) + '</p><div class="rule"></div><dl>' +
+      '<div><dt>Qué comunica</dt><dd>' + esc(o.says) + '</dd></div>' +
+      '<div><dt>Tipografía</dt><dd>' + esc(o.type) + '</dd></div>' +
+      '<div><dt>Referencias</dt><dd>' + esc(o.ref) + '</dd></div>' +
+      '<div><dt>Elíjala si</dt><dd>' + esc(o.fit) + '</dd></div>' +
+      '<div><dt>A tener en cuenta</dt><dd>' + esc(o.risk) + '</dd></div></dl>';
+    if (userAction) { try { history.replaceState(null, '', '#opcion-' + (i + 1)); } catch (e) { location.hash = 'opcion-' + (i + 1); } }
+  }
+
+  function setMode(m) {
+    mode = m;
+    bD.setAttribute('aria-pressed', m === 'desktop' ? 'true' : 'false');
+    bM.setAttribute('aria-pressed', m === 'mobile' ? 'true' : 'false');
+    frame.classList.toggle('mobile', m === 'mobile');
+    fit();
+  }
+  bD.addEventListener('click', function () { setMode('desktop'); });
+  bM.addEventListener('click', function () { setMode('mobile'); });
+  window.addEventListener('resize', fit);
+
+  function fromHash() {
+    var m = /^#opcion-([1-5])$/.exec(location.hash || '');
+    return m ? parseInt(m[1], 10) - 1 : 0;
+  }
+  window.addEventListener('hashchange', function () { select(fromHash(), false); });
+  select(fromHash(), false);
+  setMode('desktop');
+})();
+</script>
+</body>
+</html>
